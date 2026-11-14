@@ -2,15 +2,11 @@ services:
   - type: web
     name: surprise-wishes
     runtime: docker
-    plan: "0.5c-512mb"
+    plan: free
     region: singapore
     dockerfilePath: ./Dockerfile
     dockerContext: .
     healthCheckPath: /api/health
-    disk:
-      name: wishes
-      mountPath: /var/data
-      sizeGB: 1
     envVars:
       - key: DATA_DIR
         value: /var/data
