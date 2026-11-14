@@ -1,0 +1,14 @@
+.git
+.gitignore
+.dockerignore
+Dockerfile
+README.md
+data
+build
+target
+.env
+.env.*
+!.env.example
+.idea
+.vscode
+*.log

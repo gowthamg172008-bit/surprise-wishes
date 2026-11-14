@@ -1,0 +1,17 @@
+# Wishes contain private recipient details, notes, and photos.
+/data/
+
+# Compiled output and local runtime artifacts.
+/build/
+/target/
+*.class
+*.log
+
+# Local secrets and editor/OS files.
+.env
+.env.*
+!.env.example
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

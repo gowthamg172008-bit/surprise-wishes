@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fffaf5" />
+    <meta
+      name="description"
+      content="Create a personal wish and share a little moment of happiness."
+    />
+    <title>Little Moments — Wishes made personal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Little Moments home">
+        <span class="brand-mark" aria-hidden="true">✳</span>
+        <span>little moments</span>
+      </a>
+      <span class="topbar-note">A little love, right on time.</span>
+    </header>
+
+    <main>
+      <section id="home-screen" class="home-screen">
+        <div class="hero">
+          <div class="eyebrow"><span></span> MAKE SOMEONE'S DAY</div>
+          <h1>Some feelings deserve<br />their <em>own little place.</em></h1>
+          <p>
+            Create a personal wish, fill it with memories, and send a private
+            link they'll treasure.
+          </p>
+          <div class="portal-grid">
+            <button class="portal-card set-card" id="open-set" type="button">
+              <span class="portal-icon" aria-hidden="true">✎</span>
+              <span class="portal-copy">
+                <strong>Create a wish</strong>
+                <small>Set up a birthday, wedding, or just-because surprise</small>
+              </span>
+              <span class="portal-arrow" aria-hidden="true">↗</span>
+            </button>
+            <button class="portal-card view-card" id="open-view" type="button">
+              <span class="portal-icon" aria-hidden="true">♡</span>
+              <span class="portal-copy">
+                <strong>Open a wish</strong>
+                <small>Have a link? Enter it here to see your surprise</small>
+              </span>
+              <span class="portal-arrow" aria-hidden="true">↗</span>
+            </button>
+          </div>
+          <div class="hero-foot"><span>✦</span> Made for the people who make life special</div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="art-wash"></div>
+          <div class="art-sticker sticker-sun">✷</div>
+          <div class="art-sticker sticker-heart">♡</div>
+          <div class="art-note">
+            <span class="note-top">A NOTE FOR YOU</span>
+            <span class="note-heart">♡</span>
+            <span class="note-message">You make<br />ordinary days<br /><em>feel like magic.</em></span>
+            <span class="note-sign">— with love, always</span>
+          </div>
+          <div class="art-caption">a small thing<br />with a big heart</div>
+        </div>
+      </section>
+
+      <section id="set-screen" class="form-screen hidden">
+        <button class="back-button" type="button" data-home>← <span>Home</span></button>
+        <div class="form-heading">
+          <div class="eyebrow"><span></span> YOUR SURPRISE STARTS HERE</div>
+          <h2>Create a little <em>moment.</em></h2>
+          <p>Every detail makes it feel a little more like you.</p>
+        </div>
+        <form id="wish-form">
+          <div class="form-section">
+            <div class="section-title"><span class="step-number">01</span><div><h3>The occasion</h3><p>What are you celebrating?</p></div></div>
+            <div class="occasion-options" role="group" aria-label="Choose an occasion">
+              <button type="button" class="occasion-option selected" data-occasion="Birthday"><span>🎂</span> Birthday</button>
+              <button type="button" class="occasion-option" data-occasion="Wedding"><span>💍</span> Wedding</button>
+              <button type="button" class="occasion-option" data-occasion="New Year"><span>✨</span> New Year</button>
+              <button type="button" class="occasion-option" data-occasion="Just because"><span>💌</span> Just because</button>
+            </div>
+            <input id="occasion" name="occasion" type="hidden" value="Birthday" />
+          </div>
+
+          <div class="form-section">
+            <div class="section-title"><span class="step-number">02</span><div><h3>Who is it for?</h3><p>Let's make it feel personal.</p></div></div>
+            <div class="field-grid">
+              <label class="field">Their name<input id="recipient" name="recipient" type="text" maxlength="60" placeholder="e.g. Ananya" required /></label>
+              <label class="field">What you call them<input id="nickname" name="nickname" type="text" maxlength="40" placeholder="e.g. Anu, bestie…" /></label>
+              <label class="field">Occasion date<input id="event-date" name="eventDate" type="date" required /></label>
+              <label class="field">Wish opens at<input id="open-date" name="openDate" type="datetime-local" required /></label>
+            </div>
+            <p class="field-hint">The recipient can open their wish at this date and time.</p>
+          </div>
+
+          <div class="form-section">
+            <div class="section-title"><span class="step-number">03</span><div><h3>Add a memory</h3><p>A photo and a few words they'll remember.</p></div></div>
+            <label class="upload-box" for="memory-image">
+              <input id="memory-image" type="file" accept="image/png,image/jpeg,image/webp,image/gif" />
+              <span class="upload-icon">＋</span>
+              <span class="upload-label"><strong>Choose a photo</strong><small>JPG, PNG, WEBP, or GIF · up to 5 MB</small></span>
+              <span id="image-name" class="image-name"></span>
+            </label>
+            <div id="image-preview-wrap" class="image-preview-wrap hidden"><img id="image-preview" alt="Selected memory preview" /><button id="remove-image" type="button" aria-label="Remove photo">×</button></div>
+            <label class="field thoughts-field">Your words<textarea id="thoughts" name="thoughts" maxlength="600" rows="4" placeholder="A favourite memory, an inside joke, or everything you want them to know…"></textarea><span class="char-count"><span id="thought-count">0</span>/600</span></label>
+          </div>
+
+          <div id="form-error" class="error-message" role="alert"></div>
+          <div class="form-actions"><button class="primary-button" type="submit">Create their wish <span>↗</span></button><span class="privacy-note">🔒 Only people with the private link can open it.</span></div>
+        </form>
+      </section>
+
+      <section id="share-screen" class="message-screen hidden">
+        <div class="message-card">
+          <div class="success-icon">✓</div>
+          <div class="eyebrow centered">IT'S READY</div>
+          <h2>Your little moment<br />is <em>all set.</em></h2>
+          <p>Send this private link to <strong id="share-name"></strong>. Their surprise will open at the time you chose.</p>
+          <label class="field share-field">Their private wish link<div class="link-control"><input id="share-link" type="text" readonly /><button id="copy-link" type="button">Copy</button></div></label>
+          <div id="copy-status" class="copy-status" role="status" aria-live="polite"></div>
+          <button id="share-native" class="secondary-button" type="button">Share the link ↗</button>
+          <button id="preview-wish" class="text-button" type="button">Preview their wish</button>
+          <button class="text-button muted-link" type="button" data-home>Back to home</button>
+        </div>
+      </section>
+
+      <section id="open-link-screen" class="message-screen hidden">
+        <div class="message-card">
+          <div class="eyebrow centered"><span></span> YOUR SURPRISE</div>
+          <h2>Open a private <em>wish.</em></h2>
+          <p>Paste the special link someone sent you.</p>
+          <label class="field share-field">Wish link<input id="incoming-link" type="url" placeholder="Paste your wish link here" /></label>
+          <div id="incoming-error" class="error-message" role="alert"></div>
+          <button id="open-incoming" class="primary-button" type="button">Open my wish <span>↗</span></button>
+          <button class="text-button muted-link" type="button" data-home>Back to home</button>
+        </div>
+      </section>
+
+      <section id="wish-screen" class="wish-screen hidden">
+        <button class="back-button wish-back" type="button" data-home>← <span>Home</span></button>
+        <div id="wish-content"></div>
+      </section>
+    </main>
+    <footer><span>little moments</span><span>Made with a little extra love <b>♡</b></span></footer>
+    <script src="app.js"></script>
+  </body>
+</html>
