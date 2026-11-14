@@ -9,7 +9,7 @@ recipient name, nickname, opening time, photo, and personal message, then share 
 - Private wish links backed by unguessable UUIDs.
 - Scheduled opening, including automatic unlock when a wish preview is already open.
 - Optional image memories and personal notes.
-- Java 21 backend with a persistent file-based store.
+- Java 21 backend with a file-based wish store.
 - Health endpoint at `/api/health`.
 
 ## Run locally
@@ -61,12 +61,13 @@ the current file-based store is designed for one server with a shared local volu
 replicas. Use HTTPS so shared wish links are encrypted in transit.
 
 The app does not currently use an external database or require database credentials. Its
-existing storage format is per-wish properties files; production persistence is provided by the
-host's mounted disk. No wish data, local secrets, compiled classes, or build output should be
-committed to the public repository.
+existing storage format is per-wish properties files. Render Free does not preserve those files;
+other production hosts need a persistent volume for durable wishes. No wish data, local secrets,
+compiled classes, or build output should be committed to the public repository.
 
 ## GitHub
 
-Initialize a Git repository and publish the source after selecting your public repository. Check
-that `.gitignore` is active and that `data/`, `.env` files, and build output are excluded before
-the first push. Never put hosting credentials or private wish data in the public repository.
+The project source is published at
+[github.com/gowthamg172008-bit/surprise-wishes](https://github.com/gowthamg172008-bit/surprise-wishes).
+Check that `.gitignore` remains active and that `data/`, `.env` files, and build output are
+excluded from future changes. Never put hosting credentials or private wish data in the repository.
