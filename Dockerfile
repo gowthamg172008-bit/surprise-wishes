@@ -7,7 +7,8 @@ RUN mkdir -p build/classes \
 FROM eclipse-temurin:21-jre
 WORKDIR /app
 COPY --from=build /app/build/classes /app/build/classes
-COPY index.html style.css app.js /app/
+COPY index.html style.css app.js manifest.webmanifest service-worker.js /app/
+COPY icons/ /app/icons/
 ENV APP_DIR=/app
 ENV DATA_DIR=/var/data
 EXPOSE 8080
