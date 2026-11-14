@@ -156,6 +156,10 @@ public final class Main {
             case "/", "/index.html" -> "index.html";
             case "/style.css" -> "style.css";
             case "/app.js" -> "app.js";
+            case "/manifest.webmanifest" -> "manifest.webmanifest";
+            case "/service-worker.js" -> "service-worker.js";
+            case "/icons/icon-192.png" -> "icons/icon-192.png";
+            case "/icons/icon-512.png" -> "icons/icon-512.png";
             default -> null;
         };
         if (name == null) {
@@ -165,7 +169,9 @@ public final class Main {
         byte[] contents = Files.readAllBytes(ROOT.resolve(name));
         String type = name.endsWith(".html") ? "text/html; charset=utf-8"
                 : name.endsWith(".css") ? "text/css; charset=utf-8"
-                : "text/javascript; charset=utf-8";
+                : name.endsWith(".js") ? "text/javascript; charset=utf-8"
+                : name.endsWith(".webmanifest") ? "application/manifest+json; charset=utf-8"
+                : "image/png";
         exchange.getResponseHeaders().set("Content-Type", type);
         exchange.getResponseHeaders().set("Cache-Control", "no-store");
         if (exchange.getRequestMethod().equals("HEAD")) {
