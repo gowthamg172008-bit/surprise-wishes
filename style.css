@@ -39,6 +39,7 @@ h1 em, h2 em { color: var(--coral); font-weight: 500; }
 .portal-card:hover { transform: translateY(-2px); border-color: #e4b7a7; box-shadow: 0 8px 25px #75503a0d; }
 .portal-icon { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 9px; background: #fff0e9; color: var(--coral); font-size: 21px; }
 .view-card .portal-icon { background: #f5f0e9; color: #9c8066; }
+.reminder-card .portal-icon { background: #f0f2e8; color: #78875c; }
 .portal-copy { display: grid; gap: 4px; flex: 1; }
 .portal-copy strong { font-size: 13px; font-weight: 600; }
 .portal-copy small { color: var(--muted); font-size: 11px; line-height: 1.5; }
@@ -76,10 +77,32 @@ footer b { color: var(--coral); font-size: 14px; vertical-align: -1px; margin-le
 .occasion-option { min-height: 64px; background: #fffdfa; border: 1px solid var(--line); border-radius: 8px; color: #665a50; padding: 12px 5px; font-size: 10px; }
 .occasion-option span { display: block; font-size: 19px; margin-bottom: 6px; }
 .occasion-option.selected { background: #fff2eb; border-color: #e5b29f; color: #a9513b; }
+.design-picker { margin-top: 21px; }
+.design-picker-heading { display: grid; gap: 4px; margin-bottom: 10px; }
+.design-picker-heading strong { color: #62574f; font-size: 11px; font-weight: 600; }
+.design-picker-heading small { color: var(--muted); font-size: 10px; }
+.design-options { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+.design-option { position: relative; display: flex; align-items: center; gap: 9px; min-width: 0; min-height: 57px; padding: 8px; border: 1px solid var(--line); border-radius: 8px; background: #fffdfa; cursor: pointer; transition: border-color .2s, background .2s; }
+.design-option:hover, .design-option.selected { border-color: #dda58e; background: #fff8f4; }
+.design-option:focus-within { outline: 3px solid #d9775d55; outline-offset: 2px; }
+.design-option input { position: absolute; width: 1px; height: 1px; opacity: 0; }
+.design-swatch { flex: 0 0 28px; width: 28px; height: 28px; border: 1px solid #30292412; border-radius: 50%; }
+.swatch-auto { background: linear-gradient(135deg, #f8e9dc 0 50%, #f5d9df 50%); }
+.swatch-classic { background: linear-gradient(135deg, #fff4e8, #df987d); }
+.swatch-romantic { background: linear-gradient(135deg, #fde7ef, #c9779b); }
+.swatch-festive { background: linear-gradient(135deg, #ffdb9a, #df704f); }
+.swatch-elegant { background: linear-gradient(135deg, #f4eedf, #a68b5c); }
+.swatch-midnight { background: radial-gradient(circle at 70% 30%, #c39bff, #542b91 55%, #1c1232); }
+.design-option-copy { display: grid; gap: 3px; min-width: 0; }
+.design-option-copy strong { color: #51463f; font-size: 10px; font-weight: 600; }
+.design-option-copy small { overflow: hidden; color: var(--muted); font-size: 9px; text-overflow: ellipsis; white-space: nowrap; }
+.design-preview { min-height: 14px; margin: 9px 0 0; color: #9a7a65; font-size: 10px; }
 .field-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 14px; }
 .field { display: block; color: #62574f; font-size: 11px; font-weight: 600; }
 .field input, .field textarea { display: block; width: 100%; margin-top: 7px; border: 1px solid #e8dfd7; border-radius: 6px; background: #fffdfa; padding: 12px 13px; outline: none; color: var(--ink); font-size: 12px; font-weight: 400; transition: border-color .2s, box-shadow .2s; }
+.field select { display: block; width: 100%; margin-top: 7px; border: 1px solid #e8dfd7; border-radius: 6px; background: #fffdfa; padding: 12px 13px; color: var(--ink); font-size: 12px; font-weight: 400; }
 .field input:focus, .field textarea:focus { border-color: #d9977f; box-shadow: 0 0 0 3px #d9775d17; }
+.field select:focus { border-color: #d9977f; box-shadow: 0 0 0 3px #d9775d17; outline: none; }
 .field input::placeholder, .field textarea::placeholder { color: #b6aaa0; }
 .field textarea { resize: vertical; line-height: 1.6; min-height: 105px; }
 .field-hint { color: #a99a8d; font-size: 10px; margin: 9px 0 0; }
@@ -125,6 +148,7 @@ footer b { color: var(--coral); font-size: 14px; vertical-align: -1px; margin-le
 .wish-card { overflow: hidden; width: min(700px, 100%); margin: auto; background: #fffdfa; border: 1px solid #efe4d9; border-radius: 12px; box-shadow: 0 20px 60px #75503a13; }
 .wish-top { padding: 41px 50px 35px; text-align: center; background: #f9eee5; }
 .wish-top .eyebrow { justify-content: center; }
+.wish-top .eyebrow > span { flex: 0 0 7px; }
 .wish-top h2 { margin: 17px 0 5px; font-size: clamp(36px, 6vw, 54px); }
 .wish-nickname { color: #a18d7d; font-family: var(--serif); font-size: 17px; font-style: italic; }
 .wish-image { display: block; width: auto; max-width: calc(100% - 60px); max-height: 390px; margin: 28px auto 0; border-radius: 7px; object-fit: contain; }
@@ -132,11 +156,46 @@ footer b { color: var(--coral); font-size: 14px; vertical-align: -1px; margin-le
 .wish-message p { white-space: pre-wrap; color: #66574c; font-family: var(--serif); font-size: 17px; line-height: 1.9; }
 .wish-memory-label { color: #bf846d; font-size: 9px; font-weight: 700; letter-spacing: 1.5px; margin-bottom: 14px; }
 .wish-sign { color: #b39884; font-size: 24px; }
+.theme-romantic .wish-top { background: radial-gradient(circle at 15% 15%, #fff8fa 0 14%, transparent 15%), linear-gradient(135deg, #fae7ee, #f4dce6); }
+.theme-romantic .wish-top h2 em, .theme-romantic .wish-memory-label, .theme-romantic .wish-sign { color: #b65f82; }
+.theme-romantic .wish-message { background: #fffafd; }
+.theme-festive .wish-top { background: radial-gradient(circle at 12% 18%, #fff5d8 0 6%, transparent 7%), radial-gradient(circle at 88% 78%, #f8c5a4 0 8%, transparent 9%), linear-gradient(135deg, #fbe4bb, #f6d2c2); }
+.theme-festive .wish-top h2 em, .theme-festive .wish-memory-label, .theme-festive .wish-sign { color: #c46447; }
+.theme-festive .wish-message { background: #fffaf3; }
+.theme-elegant .wish-top { background: linear-gradient(135deg, #f1ecdf, #e6decb); border-bottom: 1px solid #d3c4a4; }
+.theme-elegant .wish-top h2 em, .theme-elegant .wish-memory-label, .theme-elegant .wish-sign { color: #90784d; }
+.theme-elegant .wish-message { background: #fffdf8; }
+.theme-midnight { border-color: #57377c; background: #1b1229; box-shadow: 0 20px 60px #311b4b55; }
+.theme-midnight .wish-top { background: radial-gradient(ellipse at 50% 0, #57357f 0, #28183d 50%, #1a1127 100%); }
+.theme-midnight .wish-top .eyebrow { color: #d3b8f3; }
+.theme-midnight .wish-top .eyebrow > span { background: #bc91ed; }
+.theme-midnight .wish-top h2 { color: #fff9ff; }
+.theme-midnight .wish-top h2 em { color: #d3a9ff; }
+.theme-midnight .wish-nickname { color: #c9b2df; }
+.theme-midnight .wish-message { background: #171020; }
+.theme-midnight .wish-message p { color: #eee3fb; }
+.theme-midnight .wish-memory-label, .theme-midnight .wish-sign { color: #c19aeb; }
 .locked-card { width: min(520px, 100%); margin: 85px auto; padding: 48px 35px; text-align: center; background: #fffdfa; border: 1px solid var(--line); border-radius: 11px; }
 .locked-icon { font-size: 32px; color: var(--coral); }
 .locked-card h2 { font-size: 34px; margin: 17px 0 10px; }
 .locked-card p { color: var(--muted); font-size: 12px; line-height: 1.7; }
 .locked-time { color: #9a7a65; font-size: 12px; }
+.reminder-form { padding: 22px; border: 1px solid var(--line); border-radius: 10px; background: #fffdfa; }
+.reminder-submit { margin-top: 18px; }
+.reminder-list-heading { margin: 30px 0 12px; }
+.reminder-list-heading h3 { margin: 0 0 5px; font-size: 15px; }
+.reminder-list-heading p { min-height: 17px; margin: 0; color: #688256; font-size: 12px; line-height: 1.5; }
+.reminder-list { display: grid; gap: 10px; }
+.reminder-item { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 17px 19px; border: 1px solid var(--line); border-radius: 9px; background: #fffdfa; }
+.reminder-type { color: var(--coral-dark); font-size: 9px; font-weight: 700; letter-spacing: .8px; text-transform: uppercase; }
+.reminder-item h4 { margin: 5px 0; font-size: 14px; font-weight: 600; }
+.reminder-item p { margin: 0 0 4px; color: #7d6c5e; font-size: 11px; }
+.reminder-item small { color: #a99a8d; font-size: 10px; }
+.reminder-status.active { color: #688256; }
+.remove-reminder { flex: 0 0 auto; border: 1px solid #eee5dc; border-radius: 6px; background: transparent; padding: 8px 10px; color: #9b6254; font-size: 10px; }
+.remove-reminder:hover { border-color: #d9977f; background: #fff8f4; }
+.reminder-empty { padding: 22px; border: 1px dashed #ddcfc2; border-radius: 9px; color: var(--muted); font-size: 12px; text-align: center; }
+.reminder-storage-note { margin: 14px 0 0; color: #a99a8d; font-size: 10px; line-height: 1.6; }
 .home-screen ~ footer { display: flex; }
 
 @media (max-width: 760px) {
@@ -166,17 +225,21 @@ footer b { color: var(--coral); font-size: 14px; vertical-align: -1px; margin-le
   .form-screen { width: 88%; }
   .form-heading h2 { font-size: 34px; }
   .occasion-options { grid-template-columns: 1fr 1fr; }
+  .design-options { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .field-grid { grid-template-columns: 1fr; gap: 13px; }
   .form-actions { align-items: flex-start; flex-direction: column; gap: 11px; }
   .message-card { padding: 31px 23px; }
   .message-card h2 { font-size: 31px; }
   .field input, .field textarea { font-size: 16px; }
+  .field select { font-size: 16px; }
   .field .link-control input { font-size: 13px; }
   .link-control button { min-width: 58px; min-height: 44px; }
   .primary-button { width: 100%; }
   .wish-top { padding: 35px 22px 29px; }
   .wish-image { max-width: 100%; max-height: 60vh; }
   .wish-message { padding: 29px 25px 38px; }
+  .reminder-form { padding: 17px 14px; }
+  .reminder-item { align-items: flex-start; padding: 14px; }
   footer { font-size: 9px; }
 }
 

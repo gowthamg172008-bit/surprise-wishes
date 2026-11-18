@@ -7,14 +7,14 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <meta name="apple-mobile-web-app-title" content="Little Moments" />
-    <link rel="manifest" href="/manifest.webmanifest" />
-    <link rel="icon" href="/icons/icon-192.png" type="image/png" />
-    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <meta
       name="description"
       content="Create a personal wish and share a little moment of happiness."
     />
     <title>Little Moments — Wishes made personal</title>
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href="/icons/icon-192.png" type="image/png" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -58,6 +58,14 @@
               </span>
               <span class="portal-arrow" aria-hidden="true">↗</span>
             </button>
+            <button class="portal-card reminder-card" id="open-reminders" type="button">
+              <span class="portal-icon" aria-hidden="true">▦</span>
+              <span class="portal-copy">
+                <strong>My reminders</strong>
+                <small>Save birthdays and wedding anniversaries</small>
+              </span>
+              <span class="portal-arrow" aria-hidden="true">↗</span>
+            </button>
           </div>
           <div class="hero-foot"><span>✦</span> Made for the people who make life special</div>
         </div>
@@ -92,6 +100,45 @@
               <button type="button" class="occasion-option" data-occasion="Just because"><span>💌</span> Just because</button>
             </div>
             <input id="occasion" name="occasion" type="hidden" value="Birthday" />
+            <div class="design-picker">
+              <div class="design-picker-heading">
+                <strong>Choose a design</strong>
+                <small>Let the occasion choose, or pick the look you love.</small>
+              </div>
+              <div class="design-options" role="radiogroup" aria-label="Wish design">
+                <label class="design-option selected">
+                  <input type="radio" name="wishTheme" value="auto" checked />
+                  <span class="design-swatch swatch-auto" aria-hidden="true"></span>
+                  <span class="design-option-copy"><strong>Auto</strong><small>Match occasion</small></span>
+                </label>
+                <label class="design-option">
+                  <input type="radio" name="wishTheme" value="classic" />
+                  <span class="design-swatch swatch-classic" aria-hidden="true"></span>
+                  <span class="design-option-copy"><strong>Classic</strong><small>Warm & personal</small></span>
+                </label>
+                <label class="design-option">
+                  <input type="radio" name="wishTheme" value="romantic" />
+                  <span class="design-swatch swatch-romantic" aria-hidden="true"></span>
+                  <span class="design-option-copy"><strong>Romantic</strong><small>Soft & floral</small></span>
+                </label>
+                <label class="design-option">
+                  <input type="radio" name="wishTheme" value="festive" />
+                  <span class="design-swatch swatch-festive" aria-hidden="true"></span>
+                  <span class="design-option-copy"><strong>Festive</strong><small>Bright & joyful</small></span>
+                </label>
+                <label class="design-option">
+                  <input type="radio" name="wishTheme" value="elegant" />
+                  <span class="design-swatch swatch-elegant" aria-hidden="true"></span>
+                  <span class="design-option-copy"><strong>Elegant</strong><small>Quiet & refined</small></span>
+                </label>
+                <label class="design-option">
+                  <input type="radio" name="wishTheme" value="midnight" />
+                  <span class="design-swatch swatch-midnight" aria-hidden="true"></span>
+                  <span class="design-option-copy"><strong>Midnight glow</strong><small>Purple fantasy</small></span>
+                </label>
+              </div>
+              <p id="design-preview" class="design-preview" role="status" aria-live="polite"></p>
+            </div>
           </div>
 
           <div class="form-section">
@@ -146,6 +193,41 @@
           <button id="open-incoming" class="primary-button" type="button">Open my wish <span>↗</span></button>
           <button class="text-button muted-link" type="button" data-home>Back to home</button>
         </div>
+      </section>
+
+      <section id="reminders-screen" class="form-screen hidden">
+        <button class="back-button" type="button" data-home>← <span>Home</span></button>
+        <div class="form-heading">
+          <div class="eyebrow"><span></span> KEEP THE IMPORTANT DATES CLOSE</div>
+          <h2>Remember their <em>day.</em></h2>
+          <p>Save birthdays and wedding anniversaries. Your reminders stay in this browser on this device.</p>
+        </div>
+        <form id="reminder-form" class="reminder-form">
+          <div class="field-grid">
+            <label class="field">Their name<input id="reminder-name" name="name" type="text" maxlength="60" placeholder="e.g. Ananya" required /></label>
+            <label class="field">Important date
+              <select id="reminder-type" name="type">
+                <option value="Birthday (DOB)">Birthday (DOB)</option>
+                <option value="Wedding anniversary">Wedding anniversary</option>
+              </select>
+            </label>
+            <label class="field">Date<input id="reminder-date" name="date" type="date" required /></label>
+            <label class="field">Remind me how many days before?
+              <input id="reminder-days" name="daysBefore" type="number" min="0" max="365" value="7" required />
+            </label>
+          </div>
+          <p class="field-hint">These dates repeat every year. Choose 0 to be reminded on the day.</p>
+          <div id="reminder-error" class="error-message" role="alert"></div>
+          <button class="primary-button reminder-submit" type="submit">Save reminder <span>♡</span></button>
+        </form>
+        <div class="reminder-list-heading">
+          <div>
+            <h3>Your saved dates</h3>
+            <p id="reminder-notice" role="status" aria-live="polite"></p>
+          </div>
+        </div>
+        <div id="reminder-list" class="reminder-list"></div>
+        <p class="reminder-storage-note">Reminders are saved only in this browser. The app must be opened to show them; background alerts are not available.</p>
       </section>
 
       <section id="wish-screen" class="wish-screen hidden">

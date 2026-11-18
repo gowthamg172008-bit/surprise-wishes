@@ -9,6 +9,8 @@ recipient name, nickname, opening time, photo, and personal message, then share 
 - Private wish links backed by unguessable UUIDs.
 - Scheduled opening, including automatic unlock when a wish preview is already open.
 - Optional image memories and personal notes.
+- Selectable wish designs, including occasion-matched, romantic, festive, elegant, and midnight-purple themes.
+- Local yearly reminders for birthdays and wedding anniversaries, with a custom reminder lead time.
 - Installable progressive web app (PWA) for mobile home screens.
 - Java 21 backend with a file-based wish store.
 - Health endpoint at `/api/health`.
@@ -54,6 +56,13 @@ not configured for this file-based app.
 
 The installed app uses the same public website and needs an internet connection to create or open
 wishes. Its app shell can load offline, but wish data is not stored for offline use.
+
+### Personal date reminders
+
+Open **My reminders** to save birthdays or wedding anniversaries and choose how many days ahead
+the app should start reminding you. These reminders repeat yearly and are stored only in that
+browser on that device; they are not synced to the server or other devices. Open the app to see
+dates within their reminder window. Browser apps cannot guarantee background alerts when closed.
 
 Alternatively, deploy the Dockerfile to a Java/Docker web host that provides HTTPS and persistent
 disk/volume storage. Configure:
